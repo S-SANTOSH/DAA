@@ -1,0 +1,110 @@
+// Searching code is developed by Santosh Saxena on 10/Aug/2020
+// 1. linear search
+// 2. Binary Search
+//----------------------------------CODE------------------------//
+
+import java.util.Scanner;
+class Searching
+{
+    public static void linear_search()
+    {
+        int m,i,number;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the size of an array = ");
+        m = sc.nextInt();
+        int []array = new int [m];
+        for(i=0; i<m; i++)
+        {
+            System.out.print("Enter the value in an array = ");
+            array[i] = sc.nextInt();
+        }
+        System.out.print("Enter the value you want to search in an array = ");
+        number = sc.nextInt();
+        for(i=0; i<m; i++)
+        {
+            if(number == array[i])
+            {
+                System.out.println("The value is present at = " +(i+1));
+                break;
+            }
+        }
+    }
+    public static void binary_search()
+    {
+        Scanner sc = new Scanner(System.in);
+        int average, number,low, high, m , i;
+        System.out.print("Enter the size of an array = ");
+        m = sc.nextInt();
+        int []array = new int [m];
+        for(i=0; i<m;i++)
+        {
+            array[i] = sc.nextInt();
+        }
+        low = 0;
+        high = m-1;
+        System.out.print("Enter the value you want to search in an array = ");
+        number = sc.nextInt();
+        while(true)
+        {
+            average = (low + high)/2;
+            if(array[average] == number)
+            {
+                System.out.println("The searched number = "+(average+1));
+                break;
+            }
+            if(array[average] < number)
+                low = average + 1;
+            if(array[average] > number)
+                high = average - 1;
+        }
+    }
+    public static int rec(int array[] , int low, int high , int n)
+    {
+        int avg = (low+high)/2;
+        if(array[avg] == n)
+        {
+            return avg;
+        }
+        if(array[avg] < n)
+        {
+            return(rec(array, low, avg-1, n));
+        }
+        else
+            return(rec(array, avg+1, high, n));
+        
+    }
+    
+    
+    public static void rec_bin()
+    {
+        int m,n,i, low, high;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the size of array = ");
+        m = sc.nextInt();
+        int[] array = new int [m];
+        for(i=0 ;i<m; i++)
+        {
+            System.out.print("Enter the value of element = ");
+            array[i] = sc.nextInt();
+        }
+        System.out.println();
+        System.out.print("Enter the number you want to search = ");
+        n = sc.nextInt();
+        low = 0;
+        high = m-1;
+        System.out.println("The index is = " + rec(array,low,high,n));
+    }
+    public static void  main(String[] args)
+    {
+        int order;
+        System.out.print("Enter the order = ");
+        Scanner sc = new Scanner(System.in);
+        order = sc.nextInt();
+        if(order == 1)
+            linear_search();
+        else if(order == 2)
+            binary_search();
+        else if(order == 3)
+            rec_bin();
+    }
+}
